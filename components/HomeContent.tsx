@@ -30,7 +30,7 @@ export default function HomeContent({
       <div className="h-[100dvh] md:hidden" aria-hidden="true" />
 
       <PageWrapper>
-      <div className="relative z-10 bg-white">
+      <div className="relative z-10 min-h-screen bg-white">
       <section className="px-6 py-section">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-8 font-syne text-2xl font-bold text-heading">

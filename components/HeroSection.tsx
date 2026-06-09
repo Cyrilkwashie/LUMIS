@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import HeroVideo from "./HeroVideo";
@@ -8,10 +9,35 @@ const headline = "Technology, Refined.";
 
 export default function HeroSection() {
   const words = headline.split(" ");
+  const [scrolledPast, setScrolledPast] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isMobile = window.matchMedia("(max-width: 767px)").matches;
+      if (!isMobile) {
+        setScrolledPast(false);
+        return;
+      }
+      // Hide fixed hero once user scrolls past the first screen
+      setScrolledPast(window.scrollY > window.innerHeight * 0.9);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   return (
-    <section className="hero-mobile-fullscreen relative isolate overflow-hidden bg-black md:relative md:h-screen">
-      <HeroVideo />
+    <section
+      className={`hero-mobile-fullscreen relative isolate overflow-hidden bg-black md:relative md:h-screen ${
+        scrolledPast ? "hero-scrolled-past" : ""
+      }`}
+    >
+      <HeroVideo paused={scrolledPast} />
 
       <div
         className="pointer-events-none absolute inset-0 z-[1]"

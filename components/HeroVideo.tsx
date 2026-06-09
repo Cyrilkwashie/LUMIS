@@ -2,12 +2,21 @@
 
 import { useEffect, useRef } from "react";
 
-export default function HeroVideo() {
+type HeroVideoProps = {
+  paused?: boolean;
+};
+
+export default function HeroVideo({ paused = false }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    if (paused) {
+      video.pause();
+      return;
+    }
 
     const play = async () => {
       try {
@@ -18,7 +27,7 @@ export default function HeroVideo() {
     };
 
     play();
-  }, []);
+  }, [paused]);
 
   return (
     <video

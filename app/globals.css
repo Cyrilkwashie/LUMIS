@@ -43,6 +43,14 @@
     height: 100svh;
   }
 
+  @media (max-width: 767px) {
+    .hero-scrolled-past {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
   @media (min-width: 768px) {
     .hero-mobile-fullscreen {
       position: relative;
@@ -50,6 +58,12 @@
       z-index: auto;
       width: auto;
       height: auto;
+    }
+
+    .hero-scrolled-past {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
     }
   }
 }
