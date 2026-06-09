@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# runtime database (seeded on first run)
+/data/db.json
+
 # vercel
 .vercel
 
