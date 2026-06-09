@@ -10,7 +10,7 @@ export default function HeroSection() {
   const words = headline.split(" ");
 
   return (
-    <section className="relative h-screen w-screen overflow-hidden">
+    <section className="relative isolate h-[100svh] w-full overflow-hidden bg-black md:h-screen">
       <HeroVideo />
 
       <div
